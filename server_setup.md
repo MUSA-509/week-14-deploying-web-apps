@@ -16,7 +16,7 @@
   * **Configure Security Group** — this allows our instance to be accessed from the Internet in different ways
     * SSH (port 22) — we need to keep this one as it's the way we will manage the instance
     * HTTP (port 80) — we need to add this rule. It will allow our API to receive HTTP requests over the internet
-    * HTTPS (port 443) — for secure HTTP requests
+    * HTTPS (port 443) — for secure HTTP requests (HTTPS)
   * Hit Launch
     * Create a new keypair — this file will allow you to log into the server from your command line
     * Download the pem file
