@@ -4,8 +4,8 @@ This week we will deploy the apps we have been building in class.
 
 ## Lecture
 
-* Part 1: [Web Server + AWS EC2 (by Felix)](https://docs.google.com/presentation/d/1uDfwIXHNgJqzKG0_WLY5aNgwXMfaGKib5yC0elPnVr0/edit?usp=sharing)
-* Part 2: [Deploying Web Apps on AWS Elastic Beanstalk](https://docs.google.com/presentation/d/1VnkE604jjZy
+* Slide Deck Part 1: [Web Server + AWS EC2 (by Felix)](https://docs.google.com/presentation/d/1uDfwIXHNgJqzKG0_WLY5aNgwXMfaGKib5yC0elPnVr0/edit?usp=sharing)
+* Slide Deck Part 2: [Deploying Web Apps on AWS Elastic Beanstalk](https://docs.google.com/presentation/d/1VnkE604jjZy)
 
 C1R_JQBGkJTdjHE/edit?usp=sharing)
 1. Final Project discussion
