@@ -47,11 +47,13 @@
         `$ exit` — this will take you back to your computer again
         `$ ssh -i "demo-week-13-musa-509.pem" ubuntu@...
       * Note that the `(base)` is in the command line prompt
-   2. One of the following
-      1. Clone your GitHub repo into your instance
-         * Get new GitHub token
-         * Clone the repo into the instance
-         * `cd` into the repo
+   2. Clone your GitHub repo into your instance
+         * `git clone https://...`
+         * Copy credentials into repo directory using secure copy (scp). Here we pretend the repo name is `final-project-repo`.
+           Here I copy `pg-credentials.json` from my local computer to the remote EC2 computer.
+           ```bash
+           $ scp pg-credentials.json ubuntu@your_public_ipv4_dns:~/final-project-repo/pg-credentials.json
+           ```
          * Install the environment.yml as a new environment. See [conda's environment page](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file) for more information.
            ```bash
            $ conda env create -f environment.yml
@@ -60,39 +62,50 @@
            ```bash
            $ conda install gunicorn
            ```
-      2. Make a little demo application
    3. Setup and install `nginx` a webserver that can be used as a [reverse proxy](https://www.nginx.com/resources/glossary/reverse-proxy-server/) as a way to allow the public port 80 to be connected to the port we use for the Flask application as well as providing some extra security.
-      * What is a reverse proxy? <https://www.nginx.com/resources/glossary/reverse-proxy-server/>
-      * Setup nginx on Ubuntu: <https://ubuntu.com/tutorials/install-and-configure-nginx#1-overview>, except configure the config file as follows (based on [this tutorial](https://www.matthealy.com.au/blog/post/deploying-flask-to-amazon-web-services-ec2/):
-        ```
-        server {
-            listen       80;
-            server_name  your_public_dnsname_here;
+      1. Install nginx
+         ```bash
+         $ sudo apt update
+         $ sudo apt install nginx
+         ```
+      2. Add a new site to proxy
+         ```bash
+         $ sudo "${EDITOR:-vim}" /etc/nginx/sites-enabled/musa509app
 
-            location / {
-                proxy_pass http://127.0.0.1:8000;
-            }
-        }
-        ```
-        Note the file location will be different, as seen [here](https://ubuntu.com/tutorials/install-and-configure-nginx#4-setting-up-virtual-host)
-        And mix with the SSL pieces from [this flask https walkthrough](https://blog.miguelgrinberg.com/post/running-your-flask-application-over-https).
+         ```
+      3. Put this into the file, making sure to put your IPv4 Public DNS after `server_name` below:
+         ```
+         server {
+             listen       80;
+             server_name  your_public_dnsname_here;
+
+             location / {
+                 proxy_pass http://127.0.0.1:8000;
+             }
+         }
+         ```
    3. Install tmux:
       ```
       $ sudo apt install tmux
       ```
       Nice [overview of using tmux here](https://linuxize.com/post/getting-started-with-tmux/)
-   4. If setting up for HTTPS, setting up SSL Certificates
-       * Flask with HTTPS: <https://blog.miguelgrinberg.com/post/running-your-flask-application-over-https>
 4. Log into tmux with a specific session name
-5. Activate conda environment
    ```bash
-   $ conda activate your_env_name
+   tmux new -s musa509_final_project_app 
    ```
-5. Start up the flask app, making sure that it's running with gunicorn or waitress. If your application is in a Python script called `my_fancy_app.py` and the flask object is called `app`, then you can start up your server like so:
+5. Start up the flask app, making sure that it's running with gunicorn. If your application is in a Python script called `my_fancy_app.py` and the flask object is called `app`, then you can start up your server like so:
    ```bash
    $ gunicorn my_fancy_app:app -b 127.0.0.1:8000
    ```
 6. Check out your app by copying the Public IPv4 DNS and visiting it in your browser
+7. Detach from the tmux session by pressing: `ctrl–b–d`
 7. Get out of tmux by running the `exit` command 
 8. Log out of the server by running the `exit` command
 9. Stop it or terminate it when you're done!
+
+
+## Further reading
+
+* What is a reverse proxy? <https://www.nginx.com/resources/glossary/reverse-proxy-server/>
+* Setup nginx on Ubuntu: <https://ubuntu.com/tutorials/install-and-configure-nginx#1-overview>, except configure the config file as follows (based on [this tutorial](https://www.matthealy.com.au/blog/post/deploying-flask-to-amazon-web-services-ec2/):
+
