@@ -47,6 +47,17 @@ Read more about these specifiers in the [requirements specifiers documentation](
 
 For our projects, I recommend looking at the packages you are using in your Python scripts and manually creating the requirements.txt files. Hand-made, artisanal requirements.txt files. This is a pretty common way to create these files.
 
+To get specific versions of your packages, you can run `conda list` at the command line and get an output like this:
+
+![](images/conda_list.png)
+
+**My advice on how to build a requirements.txt file**
+
+1. Find the packages you list in your application.py file (avoid system ones like io, os, json, random, math, sys) and put each on a new line in your requirements.txt file. Try to keep this list as small as possible — usually only the specific packages listed as imports at the top of your application. You can find more information on the `pypi` pages. Here's `requests`' pypi page: <https://pypi.org/project/requests/>. You can change the package by changing the URL there.
+2. Run `conda list` in the command line to list all packages installed and find the version numbers for each of these to add to your requirements.txt
+
+### Side note
+
 It's possible to convert your conda environment into a requirements.txt, but there are several issues that come with it. Read about it in [this nice StackOverflow post](https://stackoverflow.com/questions/50777849/from-conda-create-requirements-txt-for-pip3).
 
 ## Elastic Beanstalk
