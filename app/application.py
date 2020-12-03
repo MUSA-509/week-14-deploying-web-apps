@@ -12,22 +12,11 @@ except ImportError:
 MEYERSON_LAT = 39.9522197
 MEYERSON_LNG = -75.1927961
 
-# load credentials from a file
-with open("./secrets/pg-credentials.json", "r") as f_in:
-    pg_creds = json.load(f_in)
-
 # mapbox
 with open("./secrets/mapbox_token.json", "r") as mb_token:
     MAPBOX_TOKEN = json.load(mb_token)["token"]
 
 application = Flask(__name__, template_folder="templates")
-
-# load credentials from JSON file
-HOST = pg_creds["HOST"]
-USERNAME = pg_creds["USERNAME"]
-PASSWORD = pg_creds["PASSWORD"]
-DATABASE = pg_creds["DATABASE"]
-PORT = pg_creds["PORT"]
 
 
 @application.route("/")
