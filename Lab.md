@@ -56,7 +56,7 @@ It's possible to convert your conda environment into a requirements.txt, but the
 Deploy an app when you're ready to put it into production — that is, when you're ready for it to be in users hands. It's best to do all development of your application locally and push to production when it's ready for prime time.
 
 ### Deploy an app!
-1. Create environment (or Application?)
+1. Create Application
    * Give it a name
    * Customize the URL
    * Select `Python`, use defaults (Python 3.7 running on Amazon Linux 2, etc.)
