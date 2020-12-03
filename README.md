@@ -7,7 +7,8 @@ This week we will deploy the apps we have been building in class.
 * [Lecture](#lecture)
   * [Outline](#lecture-outline)
   * [Web Server with EC2](server_setup.md)
-* [Lab](Lab.md)
+* Lab
+  * [Writeup](Lab.md)
   * [Demo App](app/)
 * [Recommended Reading](#recommended-reading)
 
