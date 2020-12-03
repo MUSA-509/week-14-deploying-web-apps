@@ -2,10 +2,21 @@
 
 This week we will deploy the apps we have been building in class.
 
+## Contents
+
+* [Lecture](#lecture)
+  * [Outline](#lecture-outline)
+  * [Web Server with EC2](server_setup.md)
+* [Lab](Lab.md)
+  * [Demo App](app/)
+* [Recommended Reading](#recommended-reading)
+
 ## Lecture
 
 * Slide Deck Part 1: [Web Server + AWS EC2 (by Felix)](https://docs.google.com/presentation/d/1uDfwIXHNgJqzKG0_WLY5aNgwXMfaGKib5yC0elPnVr0/edit?usp=sharing)
 * Slide Deck Part 2: [Deploying Web Apps on AWS Elastic Beanstalk](https://docs.google.com/presentation/d/1VnkE604jjZykjmAgstDeV4W-UVDSC1R_JQBGkJTdjHE/edit?usp=sharing)
+
+### Lecture Outline
 
 1. Final Project discussion
    * Mandatory group checkins on one of these days: Dec 3, 4, 7, or 8. Please reach out to me with a few suggested times. Around lunch time or 5-5:30pm are best for me.

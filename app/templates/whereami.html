@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Musa 509 Skeleton Demo</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/skeleton.css') }}">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+
+  <!-- Mapbox GL JS Library & CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
+<style>
+    body { margin: 0; padding: 0; }
+    html, body {
+          height: 100%;
+    }
+    .full-height {
+          height: 100%;
+    }
+    .section, .row {
+      height: 100%;
+    }
+    #map { position: relative; width: 100%; height: 100%;}
+    #menu {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: #fff;
+        padding: 10px;
+        font-family: 'Open Sans', sans-serif;
+    }
+</style>
+</head>
+
+<body>
+  <div class="section full-height">
+    <div class="row">
+      <div class="three columns full-height" style="border-right: 1px solid black; padding: 12px; overflow-y: scroll;">
+        <h2>Here's your place on a map</h2>
+        <p>You entered: <b>{{ address }}</b>. This address is at: ({{ lat }}, {{ lng }}).</p>
+        {% if distance_meyerson %}
+        <p>
+          <a href="{{ url_for('whereami', address_text='Meyerson Hall, University of Pennsylvania') }}">
+            Meyerson Hall
+          </a>
+          is {{ distance_meyerson }} kilometers away.
+        </p>
+        {% endif %}
+        <hr>
+        {% if error_message %}
+        <p class="error_message">{{ error_message }}</p>
+        {% else %}
+        <h3>Try another one!</h3>
+        {% endif %}
+        {% include 'userinput.html' %}
+        <hr>
+        <p>WhereAmI is a Flask App to demo for the following workflow:</p>
+        <ol>
+            <li>User data entered in a form</li>
+            <li>Form data submitted to API backend</li>
+            <li>API internally uses Mapbox Geocoding API to find lng/lat</li>
+            <li>Location is rendered on a map</li>
+        </ol>
+      </div>
+      <div class="nine columns u-max-full-width full-height">
+        <div id="map"></div>
+      </div>
+    </div>
+  </div>
+  {{ html_map | safe }}
+
+  <!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+
+</html>
